@@ -1,0 +1,58 @@
+{% load movie_tag %}
+<header class="header">
+    <div class="container-fluid px-lg-5">
+        <!-- nav -->
+        <nav class="py-4">
+            <div id="logo">
+                <h1><a href="index.html" class="editContent"
+                       style="outline: none; outline-offset: -2px; cursor: inherit; color: rgb(255, 255, 255); font-size: 40px; background-color: rgba(0, 0, 0, 0); font-family: Source Sans Pro;, sans-serif;">DjangoMovie</a>
+                </h1>
+            </div>
+
+            <label for="drop" class="toggle">Menu</label>
+            <input type="checkbox" id="drop">
+            <ul class="menu mt-2">
+                <li class="active"><a href="/">Главная</a></li>
+                <li>
+                    <!-- First Tier Drop Down -->
+                    <label for="drop-2" class="toggle">Категории <span
+                            class="fa fa-angle-down" aria-hidden="true"></span> </label>
+                    <a href="{% url 'category_view' %}">Категории <span class="fa fa-angle-down"
+                                                aria-hidden="true"></span></a>
+                    <input type="checkbox" id="drop-2">
+                    <ul>
+                        {% get_categories as categories %}
+                        {% for category in categories %}
+                        <li><a href="{% url 'cat_detail' category.name %}">{{ category.name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </li>
+                {% if user.is_authenticated %}
+                <span style="color: rgb(255, 255, 255); font-weight: 700; text-transform: uppercase;">{{ user.username }}</span>
+                <li><a href="{% url 'logout' %}"
+                       style="color: rgb(255, 255, 255); font-weight: 700; text-transform: uppercase;">Выход</a>
+                </li>
+                {% else %}
+                <li><a href="{% url 'register' %}"
+                       style="color: rgb(255, 255, 255); font-weight: 700; text-transform: uppercase;">Регистрация</a>
+                </li>
+                <li><a href="{% url 'login' %}"
+                       style="color: rgb(255, 255, 255); font-weight: 700; text-transform: uppercase;">Вход</a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+        <!-- //nav -->
+    </div>
+</header>
+<!-- //header -->
+<!--/banner-->
+<div class="banner-info">
+    <p class="editContent">отличный сайт про обзоры</p>
+    <h3 class="mb-4 editContent">Все о кино</h3>
+    <div class="ban-buttons">
+
+
+    </div>
+</div>
+<!--// banner-inner -->

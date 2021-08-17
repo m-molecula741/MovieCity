@@ -1,0 +1,26 @@
+ {% extends 'main/base.html' %}
+ {% load static %}
+
+{% block container %}
+    <div class="container py-md-3">
+{% endblock container %}
+
+
+{% block sidebar %}
+    <div class="side-bar col-lg-4">
+{% endblock sidebar %}
+
+
+ {% block movie %}
+        {% for category in category_list %}
+        <container style="background-color: gray; width: 350px; height: 200px; margin-left: 20px;">
+
+            <div style="color: red; padding-top: 20%; padding-left: 50px;">
+                <h1><a href="{% url 'cat_detail' category.name %}">{{ category.name }}</a> </h1>
+                <br>
+                {{ category.description }}
+            </div>
+
+        </container>
+        {% endfor %}
+ {% endblock %}

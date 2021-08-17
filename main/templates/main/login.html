@@ -1,0 +1,29 @@
+{% extends 'main/base.html' %}
+ {% load static %}
+
+ {% block movie %}
+ <h1><span style="margin-left: 50px;">Авторизация</span></h1>
+
+   <form action="{% url 'login' %}" method="post" style="margin-top: 70px; float: left;">
+        {% csrf_token %}
+
+        {% for field in form %}
+            <div class="form.group" >
+                {% if field.errors %}
+                <div class="alert alert-danger">
+                    {{ field.errors }}
+                </div>
+                {% endif %}
+                <div class="col-auto">
+                    <p style="width : 400px">
+                        <span>{{ field.label }}</span>
+                        <span style="margin-right: 10px; float: left;">{{ field }}</span>
+                    </p>
+                </div>
+            </div>
+        {% endfor %}
+
+
+        <button type="submit" class="btn btn-primary" style="margin-left: 15px;">Войти</button>
+    </form>
+ {% endblock %}
